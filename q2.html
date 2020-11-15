@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <div id="button-container"></div>
+
+    <script>
+        const buttons = []
+
+        class Button {
+            constructor() {
+                this.count = 0;
+            }
+            countUp() {
+                this.count = this.count + 1;
+                this.addButtonToArray();
+                this.updateDisplay();
+            }
+            addButtonToArray() {
+                buttons.push(new Button())
+            }
+            updateDisplay() {
+                document.querySelector('#button-container').innerHTML = '';
+                buttons.forEach((each) => {
+                    let newButton = document.createElement('button');
+                    newButton.innerHTML = `clicked ${each.count} times`;
+                    newButton.addEventListener('click', () => {
+                        each.countUp()
+                    });
+                    document.querySelector('#button-container').append(newButton)
+                })
+            }
+        };
+
+        buttons.push(new Button());
+        buttons[0].updateDisplay();
+    </script>
+</body>
+
+</html>
